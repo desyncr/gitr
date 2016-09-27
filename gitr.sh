@@ -52,7 +52,7 @@ gitr-sync () {
 
 gitr-publish () {
     #\git rebase -i HEAD..develop
-    \git push
+    \git push -u origin $(git rev-parse --abbrev-ref HEAD)
     # TODO add event/callback/function to hook
     # in order to have a custom command
 }
