@@ -1,9 +1,10 @@
-# git sync / featch --all pull
-# git start release / branch from develop
-# git start feature
-# git start tooling
-# git start bugfix
-# git publish / git rebase develop / git rebase squash
+# gitr sync / featch --all pull
+# gitr start release / branch from develop
+# gitr start feature
+# gitr start tooling
+# gitr start bugfix
+# gitr publish / git rebase develop / git rebase squash
+# gitr list
 gitr-init () {
     if [[ $#@ == 0 ]]; then
 	    echo Need to specify a remote
