@@ -51,7 +51,7 @@ gitr-sync () {
 }
 
 gitr-publish () {
-    \git rebase -i HEAD..develop
+    #\git rebase -i HEAD..develop
     \git push
     # TODO add event/callback/function to hook
     # in order to have a custom command
