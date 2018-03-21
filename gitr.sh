@@ -74,7 +74,7 @@ gitr list"
 
 gitr () {
     local cmd=$1
-    if [[ ! "$cmd" == "init" && ! -d $PWD/.git ]]; then
+    if [[ ! "$cmd" == "init" && $(command git rev-parse --is-inside-work-tree 2> /dev/null) == "false" ]]; then
         echo Run this command inside a git repository
         return 1
     fi
