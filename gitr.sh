@@ -1,14 +1,14 @@
-# gitr sync / featch --all pull
-# gitr start release / branch from develop
+# gitr sync             : fetch --all pull
+# gitr start release    : branch from develop
 # gitr start feature
 # gitr start tooling
-# gitr start bugfix
-# gitr publish / git rebase develop / git rebase squash
+# gitr start bugfix     : branch from master
+# gitr publish          : push to origin
 # gitr list
 gitr-init () {
     if [[ $#@ == 0 ]]; then
-	    echo Need to specify a remote
-	    return 
+        echo Need to specify a remote
+        return
     fi
 
     \git init
@@ -26,8 +26,8 @@ gitr-start () {
         echo Commands: $commands 
     }
     if [[ $#@ -le 1 ]]; then
-	    -gitr-start-help
-	    return 1
+        -gitr-start-help
+        return 1
     fi
 
     shift 1
@@ -39,8 +39,8 @@ gitr-start () {
 
     if [[ ${commands[(r)$cmd]} == $cmd ]]; then
         -gitr-start-branch "$cmd/$branch"
-    else 
-	    -gitr-start-help
+    else
+        -gitr-start-help
         return 1
     fi
 }
@@ -61,13 +61,24 @@ gitr-list () {
     \git branch -la
 }
 
+gitr-help () {
+        echo "gitr sync             : fetch --all pull
+gitr start release    : branch from develop
+gitr start feature
+gitr start tooling
+gitr start bugfix     : branch from master
+gitr publish          : push to origin
+gitr list"
+
+}
+
 gitr () {
     local cmd=$1
     if [[ ! "$cmd" == "init" && ! -d $PWD/.git ]]; then
-        echo Run this command in a git clone
+        echo Run this command inside a git repository
         return 1
     fi
-    
+
     if functions "gitr-$cmd" &> /dev/null; then
         shift 1
         gitr-$cmd $@
